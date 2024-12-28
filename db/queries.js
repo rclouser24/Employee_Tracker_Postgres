@@ -1,16 +1,16 @@
-const pool = require('/db/connection');
+const pool = require('./connection');
 
 class EmployeeTracker{
     constructor (pool){
         this.pool = pool;
     }
 
-    async getAllDepartments(){
+    async viewAllDepartments(){
         const result = await this.pool.query('SELECT * FROM department');
         console.table(result.rows);
       }
 
-    async getAllRoles(){
+    async viewAllRoles(){
         const query = `
         SELECT 
           role.id, 
@@ -24,7 +24,7 @@ class EmployeeTracker{
       console.table(result.rows);
     }
 
-    async getAllEmployees(){
+    async viewAllEmployees(){
         const query = `
         SELECT 
           employee.id, 
@@ -75,5 +75,5 @@ class EmployeeTracker{
     console.log(`Updated employee ID ${employeeId} with new role ID ${newRoleId}.`);
     }
 
-
 }
+module.exports = EmployeeTracker;
